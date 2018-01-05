@@ -1,6 +1,8 @@
 package app.video;
 
+import app.AppContext;
 import edu.ufl.digitalworlds.j4k.J4KSDK;
+import edu.ufl.digitalworlds.j4k.Skeleton;
 
 
 /*
@@ -37,29 +39,41 @@ import edu.ufl.digitalworlds.j4k.J4KSDK;
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-public class Kinect extends J4KSDK{
+public class Kinect extends J4KSDK {
 
-	VideoPanel viewer=null;
-	
-	public void setViewer(VideoPanel viewer){this.viewer=viewer;}
-	
-	
-	
-	@Override
-	public void onDepthFrameEvent(short[] depth_frame, byte[] body_index, float[] xyz, float[] uv) {}
+    VideoPanel viewer = null;
 
-	@Override
-	public void onSkeletonFrameEvent(boolean[] skeleton_tracked, float[] positions,float[] orientations, byte[] joint_status) {
-		System.out.println("New skeleton frame received");
-	}
+    public void setViewer(VideoPanel viewer) {
+        this.viewer = viewer;
+    }
 
-	@Override
-	public void onColorFrameEvent(byte[] color_frame) {
-		System.out.println("New color frame received");
 
-		if(viewer==null || viewer.videoTexture==null) return;
-		viewer.videoTexture.update(getColorWidth(), getColorHeight(), color_frame);
-	}
+    @Override
+    public void onDepthFrameEvent(short[] depth_frame, byte[] body_index, float[] xyz, float[] uv) {
+    }
+
+    @Override
+    public void onSkeletonFrameEvent(boolean[] skeleton_tracked, float[] positions, float[] orientations, byte[] joint_status) {
+        System.out.println("New skeleton frame received");
+
+        AppContext appContext = AppContext.getInstance();
+
+        for (int i = 0; i < getMaxNumberOfSkeletons(); i++) {
+            appContext.addSkeleton(Skeleton.getSkeleton(0, skeleton_tracked, positions, orientations, joint_status, this), i);
+        }
+        System.out.println(appContext.getSkeletons());
+        for (int i = 0; i < getMaxNumberOfSkeletons(); i++){
+            System.out.println(appContext.getSkeletons()[i].getJointPositions()[0] + " " + appContext.getSkeletons()[i].getJointPositions()[1]);
+        }
+    }
+
+    @Override
+    public void onColorFrameEvent(byte[] color_frame) {
+        System.out.println("New color frame received");
+
+        if (viewer == null || viewer.videoTexture == null) return;
+        viewer.videoTexture.update(getColorWidth(), getColorHeight(), color_frame);
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package app.video;
 
+import app.AppContext;
 import edu.ufl.digitalworlds.gui.DWApp;
 import edu.ufl.digitalworlds.j4k.J4KSDK;
 
@@ -41,48 +42,43 @@ import java.awt.*;
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 @SuppressWarnings("serial")
-public class VideoViewerApp extends DWApp
-{
-	
-	Kinect myKinect;
-	VideoPanel main_panel;
-	
-	public void GUIsetup(JPanel p_root) {
-		
-		if(System.getProperty("os.arch").toLowerCase().indexOf("64")<0)
-		{
-			if(DWApp.showConfirmDialog("Performance Warning", "<html><center><br>WARNING: You are running a 32bit version of Java.<br>This may reduce significantly the performance of this application.<br>It is strongly adviced to exit this program and install a 64bit version of Java.<br><br>Do you want to exit now?</center>"))
-				System.exit(0);
-		}
-		
-		setLoadingProgress("Intitializing Kinect...",20);
-		myKinect=new Kinect();
-		if(!myKinect.start(J4KSDK.COLOR | J4KSDK.SKELETON))
-		{
-			DWApp.showErrorDialog("ERROR", "<html><center><br>ERROR: The Kinect device could not be initialized.<br><br>1. Check if the Microsoft's Kinect SDK was succesfully installed on this computer.<br> 2. Check if the Kinect is plugged into a power outlet.<br>3. Check if the Kinect is connected to a USB port of this computer.</center>");
-			//System.exit(0); 
-		}
-		
-		
-		
-		setLoadingProgress("Intitializing OpenGL...",60);
-		main_panel=new VideoPanel();
-		myKinect.setViewer(main_panel);
-		p_root.add(main_panel, BorderLayout.CENTER);	
-	}
-	
-	public void GUIclosing()
-	{
-		myKinect.stop();
-	}
-	
-	
-	public static void main(String args[]) {
-		
-    	createMainFrame("Video Viewer App");
-    	app=new VideoViewerApp();
-    	setFrameSize(730,570,null);
+public class VideoViewerApp extends DWApp {
+
+    Kinect myKinect;
+    VideoPanel main_panel;
+
+    public void GUIsetup(JPanel p_root) {
+
+        if (System.getProperty("os.arch").toLowerCase().indexOf("64") < 0) {
+            if (DWApp.showConfirmDialog("Performance Warning", "<html><center><br>WARNING: You are running a 32bit version of Java.<br>This may reduce significantly the performance of this application.<br>It is strongly adviced to exit this program and install a 64bit version of Java.<br><br>Do you want to exit now?</center>"))
+                System.exit(0);
+        }
+
+        setLoadingProgress("Intitializing Kinect...", 20);
+        myKinect = new Kinect();
+        if (!myKinect.start(J4KSDK.COLOR | J4KSDK.SKELETON)) {
+            DWApp.showErrorDialog("ERROR", "<html><center><br>ERROR: The Kinect device could not be initialized.<br><br>1. Check if the Microsoft's Kinect SDK was succesfully installed on this computer.<br> 2. Check if the Kinect is plugged into a power outlet.<br>3. Check if the Kinect is connected to a USB port of this computer.</center>");
+            //System.exit(0);
+        }
+
+        setLoadingProgress("Intitializing OpenGL...", 60);
+        main_panel = new VideoPanel();
+        myKinect.setViewer(main_panel);
+        p_root.add(main_panel, BorderLayout.CENTER);
+        // myKinect.showViewerDialog();
     }
-	
+
+    public void GUIclosing() {
+        myKinect.stop();
+    }
+
+
+    public static void main(String args[]) {
+
+        createMainFrame("Video Viewer App");
+        app = new VideoViewerApp();
+        setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);
+    }
+
 
 }

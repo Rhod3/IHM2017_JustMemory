@@ -47,6 +47,7 @@ public class VideoPanel extends OpenGLPanel
 	
 	public void setup()
 	{
+		System.out.println("Video frame setuped");
 		
 		//OPENGL SPECIFIC INITIALIZATION (OPTIONAL)
 		    GL2 gl=getGL2();
@@ -76,13 +77,15 @@ public class VideoPanel extends OpenGLPanel
 	
 	
 	public void draw() {
+		System.out.println("New video frame drawn");
 		
 		GL2 gl=getGL2();
 		
 		
 		pushMatrix();
 	    
-		
+		// Draw target from here ??
+        
 	    gl.glDisable(GL2.GL_LIGHTING);
 	    gl.glEnable(GL2.GL_TEXTURE_2D);
 	    gl.glColor3f(1f,1f,1f);
