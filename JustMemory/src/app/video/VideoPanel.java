@@ -80,12 +80,9 @@ public class VideoPanel extends OpenGLPanel
 		System.out.println("New video frame drawn");
 		
 		GL2 gl=getGL2();
-		
-		
+
 		pushMatrix();
-	    
-		// Draw target from here ??
-        
+
 	    gl.glDisable(GL2.GL_LIGHTING);
 	    gl.glEnable(GL2.GL_TEXTURE_2D);
 	    gl.glColor3f(1f,1f,1f);
@@ -93,6 +90,15 @@ public class VideoPanel extends OpenGLPanel
 	    translate(0,0,-2.2);
 	    rotateZ(180);
 	    image(8.0/3.0,2);
+
+        gl.glBegin(GL2.GL_QUADS);
+        gl.glVertex2f(-0.5f, -0.5f);
+        gl.glVertex2f( 0.5f, -0.5f);
+        gl.glVertex2f( 0.5f,  0.5f);
+        gl.glVertex2f(-0.5f,  0.5f);
+        gl.glEnd();
+
+        gl.glFlush();
 	    
 	    popMatrix();
 	}

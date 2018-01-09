@@ -59,11 +59,29 @@ public class Kinect extends J4KSDK {
         AppContext appContext = AppContext.getInstance();
 
         for (int i = 0; i < getMaxNumberOfSkeletons(); i++) {
-            appContext.addSkeleton(Skeleton.getSkeleton(0, skeleton_tracked, positions, orientations, joint_status, this), i);
+            appContext.addSkeleton(Skeleton.getSkeleton(i, skeleton_tracked, positions, orientations, joint_status, this), i);
         }
-        System.out.println(appContext.getSkeletons());
-        for (int i = 0; i < getMaxNumberOfSkeletons(); i++){
-            System.out.println(appContext.getSkeletons()[i].getJointPositions()[0] + " " + appContext.getSkeletons()[i].getJointPositions()[1]);
+
+
+        Skeleton[] skeletons = appContext.getSkeletons();
+
+        System.out.println(skeletons);
+
+        for (int i = 0; i < getMaxNumberOfSkeletons(); i++) {
+            Skeleton sk = skeletons[i];
+
+            if (sk != null) {
+                if (sk.isTracked()) {
+                    for (int j = 0; j < Skeleton.JOINT_COUNT; j++) {
+
+                        float[] jointsPosition = sk.getJointPositions();
+
+                        System.out.println(sk.get2DJoint(j, AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT)[0]
+                                + " " + sk.get2DJoint(j, AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT)[1]);
+
+                    }
+                }
+            }
         }
     }
 

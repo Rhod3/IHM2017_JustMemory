@@ -3,6 +3,8 @@ package app;
 import edu.ufl.digitalworlds.j4k.Skeleton;
 
 import java.util.LinkedList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class AppContext {
 
@@ -11,12 +13,12 @@ public class AppContext {
 
     private static AppContext context = null;
 
-    private LinkedList<SingleTarget> singleTargets = new LinkedList<>();
+    private LinkedList<Target> targets = new LinkedList<>();
     private Skeleton[] skeletons;
 
     private AppContext() {
         skeletons = new Skeleton[6];
-        singleTargets.add(new SingleTarget());
+        // targets.add(new Target());
     }
 
     public static AppContext getInstance() {
@@ -26,11 +28,18 @@ public class AppContext {
         return context;
     }
 
-    public void addSkeleton(Skeleton skeleton, int index){
+    public void addSkeleton(Skeleton skeleton, int index) {
         skeletons[index] = skeleton;
     }
 
-    public Skeleton[] getSkeletons(){
+    public Skeleton[] getSkeletons() {
         return skeletons;
+    }
+
+    public void start() {
+        TimerTask timerTask = new ScheduledCheck();
+
+        Timer timer = new Timer();
+        timer.schedule(timerTask, 2000, 5000);
     }
 }

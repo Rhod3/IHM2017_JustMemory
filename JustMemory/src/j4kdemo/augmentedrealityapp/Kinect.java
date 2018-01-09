@@ -67,7 +67,6 @@ public class Kinect extends J4KSDK{
 		if(viewer==null || viewer.skeletons==null)return;
 		for(int i=0;i<getMaxNumberOfSkeletons();i++)
 		viewer.skeletons[i]=Skeleton.getSkeleton(i, flags, positions,orientations, joint_status,this);
-		
 	}
 
 	@Override
