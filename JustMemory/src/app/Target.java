@@ -1,5 +1,7 @@
 package app;
 
+import edu.ufl.digitalworlds.j4k.Skeleton;
+
 import javax.media.opengl.GL2;
 
 public class Target {
@@ -67,6 +69,25 @@ public class Target {
 
     public boolean containsPoint(float x, float y) {
         return (x > x_min && x < x_max) && (y > y_min && y < y_max);
+    }
+
+    public boolean isSkeletonsInTarget(Skeleton[] skeletons) {
+        for (int i = 0; i < 6; i++) {
+            Skeleton sk = skeletons[i];
+
+            if (sk != null && sk.isTracked())
+            {
+                float[] jointsPosition = sk.getJointPositions();
+                for (int j = 0; j < Skeleton.JOINT_COUNT; j++)
+                {
+                    if (containsPoint(jointsPosition[j], jointsPosition[j + 1]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public void drawInGL(GL2 gl) {

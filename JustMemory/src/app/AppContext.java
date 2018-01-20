@@ -23,7 +23,7 @@ public class AppContext {
     // Currently tracked skeletons
     private Skeleton[] skeletons;
     // All the figures that will take part in the games
-    private ArrayList<Figure> figures = new ArrayList<>();
+    public ArrayList<Figure> figures = new ArrayList<>();
     // Which figure to display and to check
     public Figure figureToCheck, figureToDisplay;
 
@@ -35,15 +35,15 @@ public class AppContext {
         skeletons = new Skeleton[6];
 
         //Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
-        Target low_left = new Target(-1f, -1f);
-        Target low_center = new Target(0f, -1f);
-        Target low_right = new Target(1f, -1f);
+        Target low_left = new Target(-.75f, -.75f);
+        Target low_center = new Target(0f, -.75f);
+        Target low_right = new Target(.75f, -.75f);
         Target center_left = new Target(0f, 0f);
         Target center_center = new Target(0f, 0f);
         Target center_right = new Target(0f, 0f);
-        Target up_left = new Target(-1f, 1f);
-        Target up_center = new Target(0f, 1f);
-        Target up_right = new Target(1f, 1f);
+        Target up_left = new Target(-.75f, .75f);
+        Target up_center = new Target(0f, .75f);
+        Target up_right = new Target(.75f, .75f);
 
         Figure diagonale = new Figure(
                 low_left,
@@ -139,7 +139,7 @@ public class AppContext {
     /**
      * Get the singleton
      *
-     * @return The app contexr
+     * @return The app context
      */
     public static AppContext getInstance() {
         if (context == null) {
@@ -171,6 +171,6 @@ public class AppContext {
         TimerTask timerTask = new ScheduledCheck();
 
         Timer timer = new Timer();
-        timer.schedule(timerTask, 2000, 5000);
+        timer.schedule(timerTask, 0, 5000);
     }
 }
