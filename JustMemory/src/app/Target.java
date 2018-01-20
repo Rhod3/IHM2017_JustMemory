@@ -114,7 +114,7 @@ public class Target {
     }
 
     private float getXMax() {
-        float max = Float.MIN_VALUE;
+        float max = -Float.MAX_VALUE;
         for (int i = 0; i < vertices.length; i += 2) {
             if (vertices[i] > max)
                 max = vertices[i];
@@ -134,7 +134,7 @@ public class Target {
     }
 
     private float getYMax() {
-        float max = Float.MIN_VALUE;
+        float max = -Float.MAX_VALUE;
         for (int i = 1; i < vertices.length; i += 2) {
             if (vertices[i] > max)
                 max = vertices[i];

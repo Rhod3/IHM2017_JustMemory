@@ -28,12 +28,14 @@ public class ScheduledCheck extends TimerTask {
         }
         // Standard checking rules
         else if (state == 1) {
+            System.out.println("ScheduledTask CHECKING");
             boolean targetOK = true;
 
             for (Target target : appContext.figureToCheck.targets){
                 targetOK &= target.isSkeletonsInTarget(appContext.getSkeletons());
             }
             if (targetOK) {
+                System.out.println("ScheduledTask TARGETS OK");
                 runNumber++;
                 appContext.figureToDisplay = appContext.figures.get(runNumber);
 
