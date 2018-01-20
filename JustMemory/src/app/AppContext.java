@@ -41,17 +41,97 @@ public class AppContext {
         Target center_left = new Target(0f, 0f);
         Target center_center = new Target(0f, 0f);
         Target center_right = new Target(0f, 0f);
-        Target up_left_ = new Target(-1f, 1f);
+        Target up_left = new Target(-1f, 1f);
         Target up_center = new Target(0f, 1f);
         Target up_right = new Target(1f, 1f);
 
-        Figure figure = new Figure(
+        Figure diagonale = new Figure(
                 low_left,
                 center_center,
                 up_right
         );
 
-        figures.add(figure);
+        // It's fun to stay at the =D
+        Figure y = new Figure(
+                up_left,
+                center_center,
+                up_right
+        );
+
+
+        Figure m = new Figure(
+                low_left,
+                center_center,
+                low_right
+        );
+
+        Figure c = new Figure(
+                low_right,
+                center_center,
+                up_right
+        );
+
+        Figure a = new Figure(
+                low_left,
+                up_center,
+                low_right
+        );
+
+        Figure c_inverted = new Figure(
+                low_left,
+                center_center,
+                up_left
+        );
+
+        Figure salute_left = new Figure(
+                low_center,
+                center_center,
+                up_left
+        );
+
+        Figure salute_right = new Figure(
+                low_center,
+                center_center,
+                up_right
+        );
+
+        Figure get_down = new Figure(
+                low_left,
+                low_center,
+                low_right
+        );
+
+        // 4 targets poses
+
+        Figure square = new Figure(
+                low_left,
+                low_right,
+                up_right,
+                up_left
+        );
+
+        Figure beam_right = new Figure(
+                low_left,
+                low_right,
+                center_right,
+                up_right
+        );
+
+        Figure beam_left = new Figure(
+                low_left,
+                low_right,
+                center_left,
+                up_left
+        );
+
+        Figure beam_down = new Figure(
+                low_left,
+                low_center,
+                low_right,
+                up_center
+        );
+
+        figures.add(square);
 
         figureToDisplay = figures.get(0);
     }
