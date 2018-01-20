@@ -131,9 +131,13 @@ public class AppContext {
                 up_center
         );
 
-        figures.add(square);
+        //figures.add(square);
+        figures.add(y);
+        figures.add(m);
+        figures.add(c);
+        figures.add(a);
 
-        figureToDisplay = figures.get(0);
+        //figureToDisplay = figures.get(0);
     }
 
     /**
@@ -167,10 +171,10 @@ public class AppContext {
 
 
     // Start the scheduler to change the game state
-    public void start() {
+    public static void start() {
         TimerTask timerTask = new ScheduledCheck();
 
         Timer timer = new Timer();
-        timer.schedule(timerTask, 0, 5000);
+        timer.schedule(timerTask, 10000, 5000);
     }
 }

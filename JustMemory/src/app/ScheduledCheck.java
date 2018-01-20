@@ -13,6 +13,7 @@ public class ScheduledCheck extends TimerTask {
     // Cette fonction sera appelée toutes les 5 secondes
     @Override
     public void run() {
+        System.out.println("ScheduledTask run");
 
         // First time we run
         if (state == 0) {
@@ -23,6 +24,7 @@ public class ScheduledCheck extends TimerTask {
                 appContext.figureToCheck = appContext.figures.get(runNumber);
             }
             state = 1;
+            System.out.println("ScheduledTask INITIALIZED");
         }
         // Standard checking rules
         else if (state == 1) {

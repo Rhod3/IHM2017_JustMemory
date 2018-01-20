@@ -54,7 +54,7 @@ public class Kinect extends J4KSDK {
 
     @Override
     public void onSkeletonFrameEvent(boolean[] skeleton_tracked, float[] positions, float[] orientations, byte[] joint_status) {
-        System.out.println("New skeleton frame received");
+        //System.out.println("New skeleton frame received");
 
         AppContext appContext = AppContext.getInstance();
 
@@ -67,7 +67,7 @@ public class Kinect extends J4KSDK {
 
         System.out.println(skeletons);
 
-
+/*
         for (int i = 0; i < getMaxNumberOfSkeletons(); i++) {
             Skeleton sk = skeletons[i];
 
@@ -84,11 +84,12 @@ public class Kinect extends J4KSDK {
                 }
             }
         }
+        */
     }
 
     @Override
     public void onColorFrameEvent(byte[] color_frame) {
-        System.out.println("New color frame received");
+        //System.out.println("New color frame received");
 
         if (viewer == null || viewer.videoTexture == null) return;
         viewer.videoTexture.update(getColorWidth(), getColorHeight(), color_frame);

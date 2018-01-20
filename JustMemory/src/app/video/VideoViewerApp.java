@@ -75,6 +75,7 @@ public class VideoViewerApp extends DWApp {
 
     public static void main(String args[]) {
 
+        AppContext.start();
         createMainFrame("Video Viewer App");
         app = new VideoViewerApp();
         setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);

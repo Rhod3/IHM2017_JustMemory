@@ -78,7 +78,7 @@ public class VideoPanel extends OpenGLPanel {
 
 
     public void draw() {
-        System.out.println("New video frame drawn");
+        // System.out.println("New video frame drawn");
 
         GL2 gl = getGL2();
 
@@ -92,7 +92,10 @@ public class VideoPanel extends OpenGLPanel {
         rotateZ(180);
         image(8.0 / 3.0, 2);
 
-        appContext.figureToDisplay.displayGL(gl);
+        if (appContext.figureToDisplay != null) {
+            appContext.figureToDisplay.displayGL(gl);
+        }
+
 
         gl.glFlush();
 
