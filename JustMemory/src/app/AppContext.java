@@ -23,7 +23,7 @@ public class AppContext {
     // Currently tracked skeletons
     private Skeleton[] skeletons;
     // All the figures that will take part in the games
-    private ArrayList<Figure> figures = new ArrayList<>();
+    public ArrayList<Figure> figures = new ArrayList<>();
     // Which figure to display and to check
     public Figure figureToCheck, figureToDisplay;
 
@@ -34,9 +34,12 @@ public class AppContext {
     private AppContext() {
         skeletons = new Skeleton[6];
 
-        Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
+        // Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
 
-        Figure figure = new Figure(targetTest);
+        Target targetTest = new Target(0.5f, 0.3f);
+        Target targetTest2 = new Target(-0.5f, -0.3f);
+
+        Figure figure = new Figure(targetTest, targetTest2);
 
         figures.add(figure);
 
@@ -46,7 +49,7 @@ public class AppContext {
     /**
      * Get the singleton
      *
-     * @return The app contexr
+     * @return The app context
      */
     public static AppContext getInstance() {
         if (context == null) {
@@ -78,6 +81,6 @@ public class AppContext {
         TimerTask timerTask = new ScheduledCheck();
 
         Timer timer = new Timer();
-        timer.schedule(timerTask, 2000, 5000);
+        timer.schedule(timerTask, 0, 5000);
     }
 }
