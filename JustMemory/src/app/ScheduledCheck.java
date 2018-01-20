@@ -22,15 +22,29 @@ public class ScheduledCheck extends TimerTask {
             if (index >= 0) {
                 appContext.figureToCheck = appContext.figures.get(runNumber);
             }
-        } else {
-            
+            state = 1;
         }
+        else if (state == 1) {
+            boolean targetOK = true;
 
-        // Check si les JointPosition sont dans les targets
-            // Si c'est le cas, continue
-            // Sinon, GameOver
+            for (Target target : appContext.figureToCheck.targets){
+                targetOK &= target.isSkeletonsInTarget(appContext.getSkeletons());
+            }
+            if (targetOK) {
+                runNumber++;
+                appContext.figureToDisplay = appContext.figures.get(runNumber);
 
-        // On change les targets à afficher (supposément, on prend les suivantes dans la liste
-
+                int index = runNumber - offset;
+                if (index >= 0) {
+                    appContext.figureToCheck = appContext.figures.get(runNumber);
+                }
+            } else {
+                state = 2;
+                System.out.println("YOU LOSE");
+            }
+        }
+        else if (state == 2) {
+            System.exit(1);
+        }
     }
 }

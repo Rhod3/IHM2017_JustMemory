@@ -1,5 +1,7 @@
 package app;
 
+import edu.ufl.digitalworlds.j4k.Skeleton;
+
 import javax.media.opengl.GL2;
 
 public class Target {
@@ -26,8 +28,37 @@ public class Target {
         };
     }
 
+    public void translateHorizontally(float value) {
+        for (int i = 0; i < vertices.length; i += 2)
+            vertices[i] += value;
+    }
+
+    public void translateVertically(float value) {
+        for (int i = 1; i < vertices.length; i += 2)
+            vertices[i] += value;
+    }
+
     public boolean containsPoint(float x, float y) {
         return true;
+    }
+
+    public boolean isSkeletonsInTarget(Skeleton[] skeletons) {
+        for (int i = 0; i < 6; i++) {
+            Skeleton sk = skeletons[i];
+
+            if (sk != null && sk.isTracked())
+            {
+                float[] jointsPosition = sk.getJointPositions();
+                for (int j = 0; j < Skeleton.JOINT_COUNT; j++)
+                {
+                    if (containsPoint(jointsPosition[j], jointsPosition[j + 1]))
+                    {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public void drawInGL(GL2 gl) {

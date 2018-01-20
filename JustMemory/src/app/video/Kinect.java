@@ -67,6 +67,7 @@ public class Kinect extends J4KSDK {
 
         System.out.println(skeletons);
 
+
         for (int i = 0; i < getMaxNumberOfSkeletons(); i++) {
             Skeleton sk = skeletons[i];
 
