@@ -94,16 +94,6 @@ public class VideoPanel extends OpenGLPanel {
 
         appContext.figureToDisplay.displayGL(gl);
 
-        // Display of a square
-        /*
-        gl.glBegin(GL2.GL_QUADS);
-        gl.glVertex2f(-0.5f, -0.5f);
-        gl.glVertex2f(0.5f, -0.5f);
-        gl.glVertex2f(0.5f, 0.5f);
-        gl.glVertex2f(-0.5f, 0.5f);
-        gl.glEnd();
-        */
-
         gl.glFlush();
 
         popMatrix();

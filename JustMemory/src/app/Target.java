@@ -4,6 +4,8 @@ import javax.media.opengl.GL2;
 
 public class Target {
 
+    public static Target MID_UP_LEFT = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
+
     // Array of 4 points, 2 coordinates each (X,Y)
     float[] vertices = new float[8];
 

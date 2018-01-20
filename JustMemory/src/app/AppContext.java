@@ -3,7 +3,6 @@ package app;
 import edu.ufl.digitalworlds.j4k.Skeleton;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +18,8 @@ public class AppContext {
 
     // ===== Var for the game logic =====
 
+    // Initialized offset
+    private int memoryOffset;
     // Currently tracked skeletons
     private Skeleton[] skeletons;
     // All the figures that will take part in the games
@@ -44,6 +45,7 @@ public class AppContext {
 
     /**
      * Get the singleton
+     *
      * @return The app contexr
      */
     public static AppContext getInstance() {
@@ -53,6 +55,7 @@ public class AppContext {
         return context;
     }
 
+    // ==== Getters and Setters
     public void addSkeleton(Skeleton skeleton, int index) {
         skeletons[index] = skeleton;
     }
@@ -61,6 +64,16 @@ public class AppContext {
         return skeletons;
     }
 
+    public int getMemoryOffset() {
+        return memoryOffset;
+    }
+
+    public void setMemoryOffset(int memoryOffset) {
+        this.memoryOffset = memoryOffset;
+    }
+
+
+    // Start the scheduler to change the game state
     public void start() {
         TimerTask timerTask = new ScheduledCheck();
 
