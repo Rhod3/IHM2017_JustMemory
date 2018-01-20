@@ -19,7 +19,7 @@ public class AppContext {
     // ===== Var for the game logic =====
 
     // Initialized offset
-    private int memoryOffset;
+    private int memoryOffset = 0;
     // Currently tracked skeletons
     private Skeleton[] skeletons;
     // All the figures that will take part in the games

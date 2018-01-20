@@ -51,9 +51,10 @@ public class Target {
                 float[] jointsPosition = sk.getJointPositions();
                 for (int j = 0; j < Skeleton.JOINT_COUNT; j++)
                 {
-                    if (containsPoint(jointsPosition[j], jointsPosition[j + 1]))
-                    {
-                        return true;
+                    if (jointsPosition[j] != 0.0 && jointsPosition[j + 1] != 0.0) {
+                        if (containsPoint(jointsPosition[j], jointsPosition[j + 1])) {
+                            return true;
+                        }
                     }
                 }
             }

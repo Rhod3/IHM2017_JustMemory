@@ -24,6 +24,7 @@ public class ScheduledCheck extends TimerTask {
             }
             state = 1;
         }
+        // Standard checking rules
         else if (state == 1) {
             boolean targetOK = true;
 
@@ -43,6 +44,7 @@ public class ScheduledCheck extends TimerTask {
                 System.out.println("YOU LOSE");
             }
         }
+        // Check failed earlier :(
         else if (state == 2) {
             System.exit(1);
         }
