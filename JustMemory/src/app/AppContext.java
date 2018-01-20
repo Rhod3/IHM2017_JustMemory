@@ -34,9 +34,22 @@ public class AppContext {
     private AppContext() {
         skeletons = new Skeleton[6];
 
-        Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
+        //Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
+        Target low_left = new Target(-1f, -1f);
+        Target low_center = new Target(0f, -1f);
+        Target low_right = new Target(1f, -1f);
+        Target center_left = new Target(0f, 0f);
+        Target center_center = new Target(0f, 0f);
+        Target center_right = new Target(0f, 0f);
+        Target up_left_ = new Target(-1f, 1f);
+        Target up_center = new Target(0f, 1f);
+        Target up_right = new Target(1f, 1f);
 
-        Figure figure = new Figure(targetTest);
+        Figure figure = new Figure(
+                low_left,
+                center_center,
+                up_right
+        );
 
         figures.add(figure);
 

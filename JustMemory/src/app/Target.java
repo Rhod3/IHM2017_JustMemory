@@ -26,6 +26,16 @@ public class Target {
         };
     }
 
+    public void translateHorizontally(float value) {
+        for (int i = 0; i < vertices.length; i += 2)
+            vertices[i] += value;
+    }
+
+    public void translateVertically(float value) {
+        for (int i = 1; i < vertices.length; i += 2)
+            vertices[i] += value;
+    }
+
     public boolean containsPoint(float x, float y) {
         return true;
     }
