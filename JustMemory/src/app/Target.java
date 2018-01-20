@@ -11,8 +11,17 @@ public class Target {
     // Array of 4 points, 2 coordinates each (X,Y)
     private float[] vertices;
 
+    private float   x_min,
+                    x_max,
+                    y_min,
+                    y_max;
+
     public Target(float[] vertices) {
         this.vertices = vertices;
+        x_min = getXMin();
+        x_max = getXMax();
+        y_min = getYMin();
+        y_max = getYMax();
     }
 
     public Target(float x, float y) {
@@ -26,20 +35,40 @@ public class Target {
                 -0.25f + x,
                 0.25f + y
         };
+
+        x_min = getXMin();
+        x_max = getXMax();
+        y_min = getYMin();
+        y_max = getYMax();
+    }
+
+    public Target(Target target) {
+        vertices = target.vertices.clone();
+
+        x_min = target.x_min;
+        x_max = target.x_max;
+        y_min = target.y_min;
+        y_max = target.y_max;
     }
 
     public void translateHorizontally(float value) {
         for (int i = 0; i < vertices.length; i += 2)
             vertices[i] += value;
+
+        x_min = getXMin();
+        x_max = getXMax();
     }
 
     public void translateVertically(float value) {
         for (int i = 1; i < vertices.length; i += 2)
             vertices[i] += value;
+
+        y_min = getYMin();
+        y_max = getYMax();
     }
 
     public boolean containsPoint(float x, float y) {
-        return true;
+        return (x > x_min && x < x_max) && (y > y_min && y < y_max);
     }
 
     public boolean isSkeletonsInTarget(Skeleton[] skeletons) {
@@ -72,5 +101,45 @@ public class Target {
 
         gl.glEnd();
         gl.glFlush();
+    }
+
+    private float getXMin() {
+        float min = Float.MAX_VALUE;
+        for (int i = 0; i < vertices.length; i += 2) {
+            if (vertices[i] < min)
+                min = vertices[i];
+        }
+
+        return min;
+    }
+
+    private float getXMax() {
+        float max = Float.MIN_VALUE;
+        for (int i = 0; i < vertices.length; i += 2) {
+            if (vertices[i] > max)
+                max = vertices[i];
+        }
+
+        return max;
+    }
+
+    private float getYMin() {
+        float min = Float.MAX_VALUE;
+        for (int i = 1; i < vertices.length; i += 2) {
+            if (vertices[i] < min)
+                min = vertices[i];
+        }
+
+        return min;
+    }
+
+    private float getYMax() {
+        float max = Float.MIN_VALUE;
+        for (int i = 1; i < vertices.length; i += 2) {
+            if (vertices[i] > max)
+                max = vertices[i];
+        }
+
+        return max;
     }
 }
