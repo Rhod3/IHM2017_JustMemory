@@ -11,7 +11,7 @@ public class Target {
         this.vertices = vertices;
     }
 
-    public boolean containsPoint(float x, float y){
+    public boolean containsPoint(float x, float y) {
         return true;
     }
 
