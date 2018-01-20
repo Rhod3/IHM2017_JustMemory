@@ -1,6 +1,7 @@
 package app.video;
 
 import app.AppContext;
+import edu.ufl.digitalworlds.j4k.Skeleton;
 import edu.ufl.digitalworlds.j4k.VideoFrame;
 import edu.ufl.digitalworlds.opengl.OpenGLPanel;
 
@@ -95,7 +96,12 @@ public class VideoPanel extends OpenGLPanel {
         if (appContext.figureToDisplay != null) {
             appContext.figureToDisplay.displayGL(gl);
         }
-
+        Skeleton[] skeletons = appContext.getSkeletons();
+        for (int i = 0; i < 6; i++) {
+            if (skeletons[i] != null){
+                skeletons[i].draw(gl);
+            }
+        }
 
         gl.glFlush();
 

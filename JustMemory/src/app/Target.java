@@ -67,7 +67,8 @@ public class Target {
         y_max = getYMax();
     }
 
-    public boolean containsPoint(float x, float y) {
+    // TODO Change to handle the new parameters that are now in pixels
+    public boolean containsPoint(int x, int y) {
         return (x > x_min && x < x_max) && (y > y_min && y < y_max);
     }
 
@@ -78,10 +79,11 @@ public class Target {
             if (sk != null && sk.isTracked())
             {
                 float[] jointsPosition = sk.getJointPositions();
-                for (int j = 0; j < Skeleton.JOINT_COUNT; j++)
+                for (int j = 0; j < Skeleton.JOINT_COUNT; j += 3)
                 {
-                    if (jointsPosition[j] != 0.0 && jointsPosition[j + 1] != 0.0) {
-                        if (containsPoint(jointsPosition[j], jointsPosition[j + 1])) {
+                    if (jointsPosition[j] != 0.0) {
+                        int[] joint = sk.get2DJoint(j, AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT);
+                        if (containsPoint(joint[0], joint[1])) {
                             return true;
                         }
                     }
