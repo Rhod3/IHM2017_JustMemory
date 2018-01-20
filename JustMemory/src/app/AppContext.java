@@ -45,6 +45,30 @@ public class AppContext {
         Target up_center = new Target(0f, .75f);
         Target up_right = new Target(.75f, .75f);
 
+        // 2 targets figures
+
+        Figure jesus = new Figure(
+                up_left,
+                up_right
+        );
+
+        Figure L = new Figure(
+                up_center,
+                center_right
+        );
+
+        Figure L_inverted = new Figure(
+                up_center,
+                center_left
+        );
+
+        Figure open_arms = new Figure(
+                center_left,
+                center_right
+        );
+
+        // / 3 targets figures
+
         Figure diagonale = new Figure(
                 low_left,
                 center_center,
@@ -131,7 +155,10 @@ public class AppContext {
                 up_center
         );
 
-        figures.add(square);
+        figures.add(jesus);
+        figures.add(L);
+        figures.add(L_inverted);
+        figures.add(open_arms);
 
         figureToDisplay = figures.get(0);
     }
