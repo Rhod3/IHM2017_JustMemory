@@ -75,10 +75,23 @@ public class VideoViewerApp extends DWApp {
 
     public static void main(String args[]) {
 
-        AppContext.start();
-        createMainFrame("Video Viewer App");
-        app = new VideoViewerApp();
-        setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);
+        JButton start = new JButton("Start!");
+        start.addActionListener(e -> {
+            AppContext.start();
+            createMainFrame("Video Viewer App");
+            app = new VideoViewerApp();
+            setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);
+        });
+        
+        JFrame frame = new JFrame("Just Memory");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+        frame.add(start);
+        frame.pack();
+        frame.setVisible(true);
+
+//5. Show it.
+        frame.setVisible(true);
     }
 
 
