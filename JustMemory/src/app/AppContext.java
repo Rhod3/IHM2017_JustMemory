@@ -35,15 +35,15 @@ public class AppContext {
         skeletons = new Skeleton[6];
 
         //Target targetTest = new Target(new float[]{-0.5f, -0.5f, 0.5f, -0.5f, 0.5f, 0.5f, -0.5f, 0.5f});
-        Target low_left = new Target(-.75f, -.75f);
-        Target low_center = new Target(0f, -.75f);
-        Target low_right = new Target(.75f, -.75f);
-        Target center_left = new Target(0f, 0f);
+        Target low_left = new Target(.75f, .75f);
+        Target low_center = new Target(0f, .75f);
+        Target low_right = new Target(-.75f, .75f);
+        Target center_left = new Target(.75f, 0f);
         Target center_center = new Target(0f, 0f);
-        Target center_right = new Target(0f, 0f);
-        Target up_left = new Target(-.75f, .75f);
-        Target up_center = new Target(0f, .75f);
-        Target up_right = new Target(.75f, .75f);
+        Target center_right = new Target(-.75f, 0f);
+        Target up_left = new Target(.75f, -.75f);
+        Target up_center = new Target(0f, -.75f);
+        Target up_right = new Target(-.75f, -.75f);
 
         // 2 targets figures
 
@@ -157,7 +157,7 @@ public class AppContext {
 
         figures.add(jesus);
         figures.add(L);
-        figures.add(L_inverted);
+        figures.add(beam_left);
         figures.add(open_arms);
     }
 
@@ -194,8 +194,9 @@ public class AppContext {
     // Start the scheduler to change the game state
     public static void start() {
         TimerTask timerTask = new ScheduledCheck();
+        TimerTask updater = new TargetStateUpdater();
 
-        Timer timer = new Timer();
-        timer.schedule(timerTask, 10000, 5000);
+        new Timer().schedule(timerTask, 10000, 5000);
+        new Timer().schedule(updater, 12000, 500);
     }
 }
