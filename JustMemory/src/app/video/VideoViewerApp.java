@@ -75,10 +75,40 @@ public class VideoViewerApp extends DWApp {
 
     public static void main(String args[]) {
 
-        AppContext.start();
-        createMainFrame("Video Viewer App");
-        app = new VideoViewerApp();
-        setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);
+        JFrame frame = new JFrame("Just Memory");
+        Label welcome = new Label();
+        Choice offsetChoice = new Choice();
+        JButton start = new JButton("Start!");
+
+        welcome.setText("Choose your offset of memory skill!");
+
+        offsetChoice.setBounds(100, 100, 75, 75);
+        offsetChoice.add("0");
+        offsetChoice.add("1");
+        offsetChoice.add("2");
+        offsetChoice.add("3");
+        offsetChoice.add("4");
+
+
+        start.addActionListener(e -> {
+            frame.setVisible(false);
+            AppContext.getInstance().setMemoryOffset(offsetChoice.getSelectedIndex());
+            AppContext.start();
+            createMainFrame("Video Viewer App");
+            app = new VideoViewerApp();
+            setFrameSize(AppContext.VIDEOFRAME_WIDTH, AppContext.VIDEOFRAME_HEIGHT, null);
+        });
+
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new FlowLayout());
+        frame.add(welcome);
+        frame.add(offsetChoice);
+        frame.add(start);
+        frame.pack();
+        frame.setVisible(true);
+
+        frame.setVisible(true);
     }
 
 
