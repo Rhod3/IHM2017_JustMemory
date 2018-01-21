@@ -137,11 +137,16 @@ public class Target {
 
     public void drawInGL(GL2 gl) {
         gl.glLineWidth(30);
-        if (isOK){
-            gl.glColor3f(0.0f,1.0f,0.0f);
+        if (AppContext.getInstance().getMemoryOffset() == 0) {
+            if (isOK){
+                gl.glColor3f(0.0f,1.0f,0.0f);
+            } else {
+                gl.glColor3f(1.0f,0.0f,0.0f);
+            }
         } else {
-            gl.glColor3f(1.0f,0.0f,0.0f);
+            gl.glColor3f(0.0f,0.0f,1.0f);
         }
+
         gl.glBegin(GL2.GL_LINE_LOOP);
 
         gl.glVertex2f(-vertices[0], vertices[1]); // UPPER_LEFT

@@ -157,7 +157,6 @@ public class AppContext {
 
         figures.add(jesus);
         figures.add(L);
-        figures.add(beam_left);
         figures.add(open_arms);
     }
 
@@ -173,7 +172,6 @@ public class AppContext {
         return context;
     }
 
-    // ==== Getters and Setters
     public void addSkeleton(Skeleton skeleton, int index) {
         skeletons[index] = skeleton;
     }

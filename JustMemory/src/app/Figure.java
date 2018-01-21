@@ -9,7 +9,7 @@ import java.util.Arrays;
  * has to be in.
  */
 public class Figure {
-    ArrayList<Target> targets;
+    public ArrayList<Target> targets;
 
     public Figure(Target... targets) {
         this.targets = new ArrayList<>(Arrays.asList(targets));

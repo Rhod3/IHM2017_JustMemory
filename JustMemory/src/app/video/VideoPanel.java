@@ -1,6 +1,7 @@
 package app.video;
 
 import app.AppContext;
+import app.Target;
 import edu.ufl.digitalworlds.j4k.Skeleton;
 import edu.ufl.digitalworlds.j4k.VideoFrame;
 import edu.ufl.digitalworlds.opengl.OpenGLPanel;
@@ -96,10 +97,27 @@ public class VideoPanel extends OpenGLPanel {
         if (appContext.figureToDisplay != null) {
             appContext.figureToDisplay.displayGL(gl);
         }
-        Skeleton[] skeletons = appContext.getSkeletons();
-        for (int i = 0; i < 6; i++) {
-            if (skeletons[i] != null){
-                skeletons[i].draw(gl);
+
+        if (appContext.figureToCheck != null && appContext.getMemoryOffset() != 0) {
+            for (int i = 0; i < appContext.figureToCheck.getTargets().size(); i++) {
+                boolean targetOK = false;
+                for (Target target : appContext.figureToCheck.targets){
+                    targetOK &= target.isSkeletonsInTarget(appContext.getSkeletons());
+                }
+                if (targetOK) {
+                    gl.glColor3f(0.0f,1.0f,0.0f);
+                } else {
+                    gl.glColor3f(1.0f,0.0f,0.0f);
+                }
+                gl.glColor3f(1.0f,0.0f,0.0f);
+                gl.glBegin(GL2.GL_QUADS);
+                gl.glVertex2f(1f,-.2f);
+                gl.glVertex2f(.8f, -.2f);
+                gl.glVertex2f(.8f, 0f);
+                gl.glVertex2f(1f, 0f);
+
+                gl.glEnd();
+                gl.glFlush();
             }
         }
 
