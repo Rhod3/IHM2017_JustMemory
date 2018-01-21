@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JustMemory:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JustMemory_jar</output-path>
+    <root id="archive" name="JustMemory.jar">
+      <element id="module-output" name="JustMemory" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/ufdw.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jogl-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gluegen-rt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jogl-all-natives-windows-i586.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/jogl-all-natives-windows-amd64.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gluegen-rt-natives-windows-i586.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/lib/gluegen-rt-natives-windows-amd64.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
