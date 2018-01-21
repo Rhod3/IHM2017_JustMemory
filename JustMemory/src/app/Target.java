@@ -80,10 +80,10 @@ public class Target {
     }
 
     public boolean containsPoint(int x, int y) {
-        System.out.println("X MIN : " + getXPixel(x_min));
-        System.out.println("X MAX : " + getXPixel(x_max));
-        System.out.println("Y MIN : " + getYPixel(y_min));
-        System.out.println("Y MAX : " + getYPixel(y_max));
+        // System.out.println("X MIN : " + getXPixel(x_min));
+        // System.out.println("X MAX : " + getXPixel(x_max));
+        // System.out.println("Y MIN : " + getYPixel(y_min));
+        // System.out.println("Y MAX : " + getYPixel(y_max));
 
         /*
         for (int i = 0; i < vertices.length; i++)
@@ -95,7 +95,6 @@ public class Target {
             }
         }
         */
-
         return (x < getXPixel(x_min) && x > getXPixel(x_max)) && (y > getYPixel(y_min) && y < getYPixel(y_max));
     }
 

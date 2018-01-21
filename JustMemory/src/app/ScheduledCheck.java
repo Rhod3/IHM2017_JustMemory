@@ -47,8 +47,15 @@ public class ScheduledCheck extends TimerTask {
 
                     // If we already have a figure to check, we can go "backward" in the array
                     if (appContext.figureToCheck != null) {
+                        int i = -1 % 2;
+                        if (i<0) i += 2;
+
+                        int index = (runNumber - offset)%appContext.figures.size();
+                        if (index < 0)
+                            index += appContext.figures.size();
+
                         appContext.figureToCheck =
-                                appContext.figures.get((runNumber - offset)%appContext.figures.size());
+                                appContext.figures.get(index);
                     }
                 } else {
                     state = 2;
@@ -61,8 +68,12 @@ public class ScheduledCheck extends TimerTask {
 
                 // Handle the first figure to check
                 if (runNumber > offset) {
+                    int index = (runNumber - offset)%appContext.figures.size();
+                    if (index < 0)
+                        index += appContext.figures.size();
+
                     appContext.figureToCheck =
-                            appContext.figures.get((runNumber - offset) % appContext.figures.size());
+                            appContext.figures.get(index);
                 }
             }
         }

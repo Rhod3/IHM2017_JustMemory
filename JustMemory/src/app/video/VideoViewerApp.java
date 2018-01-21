@@ -102,9 +102,11 @@ public class VideoViewerApp extends DWApp {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLayout(new FlowLayout());
+
         frame.add(welcome);
         frame.add(offsetChoice);
         frame.add(start);
+
         frame.pack();
         frame.setVisible(true);
 
