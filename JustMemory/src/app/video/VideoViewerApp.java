@@ -88,6 +88,7 @@ public class VideoViewerApp extends DWApp {
 
         JButton start = new JButton("Start!");
         start.addActionListener(e -> {
+            AppContext.getInstance().setMemoryOffset(offsetChoice.getSelectedIndex());
             AppContext.start();
             createMainFrame("Video Viewer App");
             app = new VideoViewerApp();
@@ -102,7 +103,7 @@ public class VideoViewerApp extends DWApp {
         frame.add(start);
         frame.pack();
         frame.setVisible(true);
-        
+
         frame.setVisible(true);
     }
 
